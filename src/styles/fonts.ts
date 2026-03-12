@@ -3,12 +3,12 @@ import localFont from "next/font/local";
 export const sansation = localFont({
   src: [
     {
-      path: "./fonts/Sansation-Regular.ttf",
+      path: "../assets/fonts/Sansation-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Sansation-Bold.ttf",
+      path: "../assets/fonts/Sansation-Bold.ttf",
       weight: "700",
       style: "normal",
     },
@@ -20,7 +20,7 @@ export const sansation = localFont({
 export const ibmPlexSerif = localFont({
   src: [
     {
-      path: "./fonts/IBMPlexSerif-Regular.ttf",
+      path: "../assets/fonts/IBMPlexSerif-Regular.ttf",
       weight: "400",
       style: "normal",
     },
