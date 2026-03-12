@@ -1,9 +1,15 @@
-.page {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background);
+.container {
+  padding-inline: var(--space-32);
+  margin-inline: auto;
+  max-width: var(--viewport-desktop);
+
+  @media (width >= 768px) {
+    padding-inline: var(--space-44);
+  }
+
+  @media (width >= 1920px) {
+    padding-inline: var(--space-64);
+  }
 }
 
 .main {
