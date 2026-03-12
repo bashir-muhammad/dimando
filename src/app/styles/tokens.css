@@ -39,10 +39,13 @@
   --color-gray-70: rgb(0 0 0 / 70%);
   --color-gray-80: rgb(0 0 0 / 80%);
   --color-gray-90: rgb(0 0 0 / 90%);
+  --background: #fff;
+  --foreground: var(--color-gray-80);
+  --color-primary: var(--color-primary-50);
 
   /* --- Typography --- */
-  --font-body: "IBM Plex Serif", serif;
-  --font-title: "Sansation", sans-serif;
+  --font-body: var(--font-ibm-plex), serif;
+  --font-title: var(--font-sansation), sans-serif;
   --font-weight-body: 400; /* Regular */
 
   /* --- Responsive spacing defaults (mobile-first) --- */
@@ -59,71 +62,71 @@
 
   /* --- Responsive text defaults (mobile-first) --- */
   --text-sm: 0.75rem; /* 12px */
-  --text-sm-lh: 1.05rem; /* 16.8px */
+  --text-sm-margin: 1.05rem; /* 16.7px */
   --text-md: 0.875rem; /* 14px */
-  --text-md-lh: 1.225rem; /* 19.6px */
+  --text-md-margin: 1.225rem; /* 19.6px */
   --text-lg: 1.125rem; /* 18px */
   --text-xl: 2rem; /* 32px */
-  --text-xl-lh: 2.8rem; /* 44.8px */
+  --text-xl-margin: 2.8rem; /* 44.79px */
   --text-2xl: 3.5rem; /* 56px */
-  --text-2xl-lh: 4.9rem; /* 78.4px */
+  --text-2xl-margin: 4.9rem; /* 78.4px */
 
   /* --- Viewport reference --- */
   --viewport-mobile: 390px;
   --viewport-tablet: 768px;
   --viewport-desktop: 1920px;
+}
 
-  /* TABLET OVERRIDES  ≥ 768px */
-  @media (width >= 768px) {
-    :root {
-      --space-xs: 8px;
-      --space-sm: 12px;
-      --space-md: 16px;
-      --space-lg: 20px;
-      --space-xl: 24px;
-      --space-2xl: 28px;
-      --space-3xl: 32px;
-      --space-4xl: 36px;
-      --space-5xl: 40px;
-      --space-6xl: 44px;
+/* TABLET OVERRIDES  ≥ 768px */
+@media (width >= 768px) {
+  :root {
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px;
+    --space-lg: 20px;
+    --space-xl: 24px;
+    --space-2xl: 28px;
+    --space-3xl: 32px;
+    --space-4xl: 36px;
+    --space-5xl: 40px;
+    --space-6xl: 44px;
 
-      /* Text */
-      --text-sm: 0.875rem; /* 14px */
-      --text-sm-lh: 1.225rem; /* 19.6px */
-      --text-md: 1rem; /* 16px */
-      --text-md-lh: 1.4rem; /* 22.4px */
-      --text-lg: 1.25rem; /* 20px */
-      --text-xl: 2.125rem; /* 34px */
-      --text-xl-lh: 2.975rem; /* 47.6px */
-      --text-2xl: 3.75rem; /* 60px */
-      --text-2xl-lh: 5.25rem; /* 84px */
-    }
+    /* Text */
+    --text-sm: 0.875rem; /* 14px */
+    --text-sm-margin: 1.225rem; /* 19.6px */
+    --text-md: 1rem; /* 16px */
+    --text-md-margin: 1.4rem; /* 22.4px */
+    --text-lg: 1.25rem; /* 20px */
+    --text-xl: 2.125rem; /* 34px */
+    --text-xl-margin: 2.975rem; /* 47.6px */
+    --text-2xl: 3.75rem; /* 60px */
+    --text-2xl-margin: 5.25rem; /* 84px */
   }
+}
 
-  /* DESKTOP OVERRIDES  ≥ 1920px */
-  @media (width >= 1920px) {
-    :root {
-      --space-xs: 12px;
-      --space-sm: 16px;
-      --space-md: 20px;
-      --space-lg: 24px;
-      --space-xl: 28px;
-      --space-2xl: 32px;
-      --space-3xl: 36px;
-      --space-4xl: 40px;
-      --space-5xl: 44px;
-      --space-6xl: 48px;
+/* DESKTOP OVERRIDES  ≥ 1920px */
+@media (width >= 1920px) {
+  :root {
+    --space-xs: 12px;
+    --space-sm: 16px;
+    --space-md: 20px;
+    --space-lg: 24px;
+    --space-xl: 28px;
+    --space-2xl: 32px;
+    --space-3xl: 36px;
+    --space-4xl: 40px;
+    --space-5xl: 44px;
+    --space-6xl: 48px;
 
-      /* Text */
-      --text-sm: 1rem; /* 16px */
-      --text-sm-lh: 1.4rem; /* 22.4px */
-      --text-md: 1.125rem; /* 18px */
-      --text-md-lh: 1.575rem; /* 25.2px */
-      --text-lg: 1.5rem; /* 24px */
-      --text-xl: 2.25rem; /* 36px */
-      --text-xl-lh: 3.15rem; /* 50.4px */
-      --text-2xl: 4rem; /* 64px */
-      --text-2xl-lh: 5.6rem; /* 89.6px */
-    }
+    /* Text */
+    --text-sm: 1rem; /* 16px */
+    --text-sm-margin: 1.4rem; /* 22.4px */
+    --text-md: 1.125rem; /* 18px */
+    --text-md-margin: 1.575rem; /* 25.2px */
+    --text-lg: 1.5rem; /* 24px */
+    --text-xl: 2.25rem; /* 36px */
+    --text-xl-margin: 3.15rem; /* 50.4px */
+    --text-2xl: 4rem; /* 64px */
+    --text-2xl-margin: 5.6rem; /* 89.6px */
   }
 }

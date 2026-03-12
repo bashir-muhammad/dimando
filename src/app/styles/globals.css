@@ -1,16 +1,3 @@
-:root {
-  --background: #fff;
-  --foreground: var(--color-gray-80);
-  --color-primary: var(--color-primary-50);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
   max-width: 100vw;
@@ -20,8 +7,10 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-body);
+  font-family: var(--font-ibm-plex);
   font-weight: var(--font-weight-body);
+  font-size: var(--text-md);
+  line-height: 140%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -37,7 +26,24 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-bottom: var(--text-margin);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sansation);
+  line-height: 120%;
+}
+
 @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+
   html {
     color-scheme: dark;
   }
