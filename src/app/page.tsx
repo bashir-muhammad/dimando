@@ -2,7 +2,7 @@ import styles from "./styles/page.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div className={styles.container}>
       <main className={styles.main}>
         <h2>Heading</h2>Main page
         <p>

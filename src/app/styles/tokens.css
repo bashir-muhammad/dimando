@@ -42,6 +42,11 @@
   --background: #fff;
   --foreground: var(--color-gray-80);
   --color-primary: var(--color-primary-50);
+  --linear-gray-gradient: linear-gradient(
+    90deg,
+    var(--color-gray-30, rgb(0 0 0 /30%)) 0%,
+    var(--color-gray-50, rgb(0 0 0 / 50%)) 100%
+  );
 
   /* --- Typography --- */
   --font-body: var(--font-ibm-plex), serif;
