@@ -3,8 +3,9 @@ import styles from "./button.module.css";
 
 interface ButtonBaseProps {
   variant?: "primary" | "secondary";
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
   as?: ElementType;
+  disabled?: boolean;
 }
 
 interface ButtonAsButton
@@ -24,9 +25,16 @@ const Button = ({
   size = "md",
   className,
   as: Component = "button",
+  disabled = false,
   ...props
 }: ButtonProps) => {
-  const combinedClasses = [styles[variant], styles[size], className]
+  const combinedClasses = [
+    styles.button,
+    styles[variant],
+    styles[size],
+    disabled && styles.disabled,
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -34,6 +42,7 @@ const Button = ({
     return (
       <Component
         className={combinedClasses}
+        aria-disabled={disabled}
         {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
       />
     );
@@ -41,6 +50,7 @@ const Button = ({
   return (
     <Component
       className={combinedClasses}
+      disabled={disabled}
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
     />
   );
