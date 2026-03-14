@@ -27,7 +27,7 @@ a {
 }
 
 p {
-  margin-bottom: var(--text-margin);
+  margin-bottom: var(--text-md-margin);
 }
 
 h1,
@@ -36,6 +36,29 @@ h3,
 h4 {
   font-family: var(--font-sansation);
   line-height: 120%;
+  letter-spacing: -0.96px;
+}
+
+h1,
+h2 {
+  margin-bottom: var(--text-xl-margin);
+}
+
+h1 {
+  font-size: var(--text-2xl);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 /* @media (prefers-color-scheme: dark) {

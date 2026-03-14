@@ -80,6 +80,9 @@
   --viewport-mobile: 390px;
   --viewport-tablet: 768px;
   --viewport-desktop: 1920px;
+
+  /* Transitions */
+  --transition1: 300ms ease-out;
 }
 
 /* TABLET OVERRIDES  ≥ 768px */
