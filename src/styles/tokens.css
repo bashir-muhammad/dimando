@@ -82,7 +82,7 @@
   --viewport-desktop: 1920px;
 
   /* Transitions */
-  --transition1: 280ms ease-in-out;
+  --transition1: 300ms ease-out;
 }
 
 /* TABLET OVERRIDES  ≥ 768px */
