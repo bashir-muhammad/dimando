@@ -62,7 +62,7 @@ const CardFooter = ({
     <div className={combinedClasses} {...props}>
       <span>{children}</span>
       {icon && (
-        <span className={Styles.footerIcon} aria-hidden="true">
+        <span className={Styles.footericon} aria-hidden="true">
           {icon}
         </span>
       )}

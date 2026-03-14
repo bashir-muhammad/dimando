@@ -49,6 +49,22 @@
   margin-top: auto;
 }
 
-.footer-icon {
-  border: 1px solid red;
+.footericon {
+  border: 2px solid var(--color-gray-50);
+  color: var(--color-gray-50);
+  display: grid;
+  place-items: center;
+  padding: var(--space-12);
+  border-radius: 100%;
+  transition: all var(--transition1);
+}
+
+.card:hover .footericon {
+  background-color: var(--color-gray-60);
+  color: var(--color-white);
+  border-color: transparent;
+}
+
+.result:hover .footericon {
+  color: var(--color-primary-20);
 }
