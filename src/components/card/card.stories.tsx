@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Card, CardTitle, CardDescription, CardFooter } from "./card";
+import ArrowRight from "@/assets/icons/arrow-right.svg?react";
+// import CheckCircle from "@/assets/icons/check-circle.svg";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
@@ -29,9 +31,8 @@ export const Default: Story = {
         facere, quis dignissimos ratione, cumque aut exercitationem labore
         quidem inventore.
       </CardDescription>
-      <CardFooter>
+      <CardFooter icon={<ArrowRight width={20} height={20} />}>
         <span># questions</span>
-        <span>ICon</span>
       </CardFooter>
     </Card>
   ),

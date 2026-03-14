@@ -1,8 +1,12 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import Styles from "./card.module.css";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "completed" | "result";
+}
+
+interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
+  icon?: ReactNode;
 }
 
 const Card = ({
@@ -47,11 +51,21 @@ const CardDescription = ({
   );
 };
 
-const CardFooter = ({ className, children, ...props }: CardProps) => {
+const CardFooter = ({
+  icon,
+  className,
+  children,
+  ...props
+}: CardFooterProps) => {
   const combinedClasses = [Styles.footer, className].filter(Boolean).join(" ");
   return (
     <div className={combinedClasses} {...props}>
-      {children}
+      <span>{children}</span>
+      {icon && (
+        <span className={Styles.footerIcon} aria-hidden="true">
+          {icon}
+        </span>
+      )}
     </div>
   );
 };

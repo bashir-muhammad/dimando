@@ -48,3 +48,7 @@
   font-size: var(--text-sm);
   margin-top: auto;
 }
+
+.footer-icon {
+  border: 1px solid red;
+}
