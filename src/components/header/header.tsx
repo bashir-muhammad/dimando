@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import Logo from "@/assets/icons/logo-black.svg?react";
+import Logo from "@/assets/icons/logo-black.svg";
 import Styles from "./header.module.css";
 
 const Header = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {

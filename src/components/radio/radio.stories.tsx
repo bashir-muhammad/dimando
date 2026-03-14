@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Radio } from "./radio";
 
 const meta: Meta<typeof Radio> = {
