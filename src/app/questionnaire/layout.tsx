@@ -15,7 +15,7 @@ export default function QuestionnaireLayout({
   return (
     <div className={Styles.layout}>
       <div className={Styles.container}>
-        <Header />
+        <Header className={Styles.header} />
         {children}
         <Footer />
       </div>

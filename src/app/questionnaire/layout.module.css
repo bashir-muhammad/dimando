@@ -28,3 +28,7 @@
     padding-inline: var(--space-64);
   }
 }
+
+.header {
+  color: var(--color-white);
+}
