@@ -7,6 +7,7 @@ import "@/styles/tokens.css";
 import "@/styles/globals.css";
 import { Footer } from "@/components/footer/footer";
 import { Header } from "@/components/header/header";
+import localData from "@/data/beecepter.json";
 
 export const metadata: Metadata = {
   title: "Dimando Quesionnare",
@@ -14,10 +15,21 @@ export const metadata: Metadata = {
 };
 
 async function getAppData(): Promise<AppConfig> {
-  const result = await fetch("https://test-config.free.beeceptor.com/", {
-    cache: "no-store",
-  });
-  return result.json();
+  try {
+    const result = await fetch("https://test-config.free.beeceptor.com/", {
+      cache: "no-store",
+    });
+    if (!result.ok) {
+      console.warn(
+        `Fetch failed with status ${result.status}, falling back to local data`,
+      );
+      return localData as AppConfig;
+    }
+    return result.json();
+  } catch (error) {
+    console.warn("Fetch threw an error, falling back to local data:", error);
+    return localData as AppConfig;
+  }
 }
 
 export default async function RootLayout({
