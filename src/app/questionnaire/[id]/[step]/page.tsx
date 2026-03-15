@@ -3,8 +3,11 @@ import { useParams, useRouter } from "next/navigation";
 import { useApp } from "@/context/app-context";
 import { Button } from "@/components/button/button";
 import { RatingGroup } from "@/components/rating-group/rating-group";
+import { Radio } from "@/components/radio/radio";
 import ArrowRight from "@/assets/icons/arrow-right.svg";
 import ArrowLeft from "@/assets/icons/arrow-left.svg";
+
+import Styles from "./page.module.css";
 
 export default function Questionnaires() {
   const { id, step } = useParams();
@@ -68,11 +71,24 @@ export default function Questionnaires() {
         max={10}
         onChange={updateRating}
       ></RatingGroup>
-
-      {/* <RadioOptions></RadioOptions> */}
+      {currentSavedAnswer.rating > 0 && (
+        <div className={Styles.rating}>
+          {currentQuestion["follow-up-options"].map((option) => (
+            <Radio
+              key={option}
+              onChange={() => updateFollowUp(option)}
+              value={option}
+              checked={currentSavedAnswer.followUp === option}
+            >
+              {option}
+            </Radio>
+          ))}
+        </div>
+      )}
 
       <div>
         <Button
+          size="lg"
           onClick={() =>
             stepIndex + 1 < total
               ? router.push(`/questionnaire/${id}/${Number(step) + 1}`)
@@ -80,7 +96,7 @@ export default function Questionnaires() {
           }
           disabled={!currentSavedAnswer.rating || !currentSavedAnswer.followUp}
         >
-          {stepIndex + 1 === total ? "Finish" : "Next"}
+          {stepIndex + 1 === total ? "Finish" : "Next Question"}
           <ArrowRight />
         </Button>
       </div>
