@@ -19,6 +19,9 @@
   padding-inline: var(--space-32);
   margin-inline: auto;
   max-width: var(--viewport-desktop);
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
 
   @media (width >= 768px) {
     padding-inline: var(--space-44);
