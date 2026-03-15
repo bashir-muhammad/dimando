@@ -1,4 +1,6 @@
 .layout {
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
   width: 100%;
   padding-inline: var(--space-32);
