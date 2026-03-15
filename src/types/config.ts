@@ -19,8 +19,8 @@ export interface AppConfig {
     title: string;
     description: string;
   };
-  questionnare: {
-    "sub-title": string;
+  questionnaire: {
+    "sup-title": string;
     description: string;
     results: {
       title: string;

@@ -1,6 +1,7 @@
 "use client";
 import styles from "@/styles/page.module.css";
 import { useApp } from "@/context/app-context";
+import Link from "next/link";
 import {
   Card,
   CardTitle,
@@ -33,6 +34,7 @@ export default function Home() {
                 {quesionnare.questions.length} Question
                 {quesionnare.questions.length > 1 && "s"}
               </span>
+              <Link href={`questionnaire/${quesionnare.id}/1`}>Link</Link>
             </CardFooter>
           </Card>
         ))}
