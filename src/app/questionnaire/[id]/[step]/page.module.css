@@ -20,5 +20,7 @@
 }
 
 .ButtonGroup {
-  /* margin-top: auto; */
+  display: flex;
+  gap: var(--space-md);
+  align-self: end;
 }

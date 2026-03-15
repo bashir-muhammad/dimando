@@ -107,7 +107,12 @@ export default function Questionnaires() {
           )}
         </div>
       </div>
-      <div className={Styles.ButtonGroup}>button</div>
+      {stepIndex + 1 < total && (
+        <div className={Styles.ButtonGroup}>
+          <Button variant="secondary">Quit</Button>
+          <Button variant="secondary">Quit and Save</Button>
+        </div>
+      )}
     </main>
   );
 }
