@@ -28,3 +28,18 @@
     grid-template-columns: repeat(3, 430px);
   }
 }
+
+.card {
+  position: relative;
+  z-index: 2;
+}
+
+.link {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: auto;
+  }
+}

@@ -25,17 +25,23 @@ export default function Home() {
           <Card
             key={quesionnare.id}
             variant="default"
+            className={styles.card}
             style={{ backgroundColor: quesionnare.color }}
           >
             <CardTitle>{quesionnare.title}</CardTitle>
             <CardDescription>{quesionnare.description}</CardDescription>
-            <CardFooter icon={<DoubleArrowRight width={20} height={20} />}>
+            <CardFooter icon={<DoubleArrowRight width={24} height={24} />}>
               <span>
                 {quesionnare.questions.length} Question
                 {quesionnare.questions.length > 1 && "s"}
               </span>
-              <Link href={`questionnaire/${quesionnare.id}/1`}>Link</Link>
             </CardFooter>
+            <Link
+              className={styles.link}
+              href={`questionnaire/${quesionnare.id}/1`}
+            >
+              <span className="sr-only">Open: {quesionnare.title}</span>
+            </Link>
           </Card>
         ))}
       </div>
