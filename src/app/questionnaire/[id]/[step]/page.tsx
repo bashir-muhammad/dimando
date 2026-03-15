@@ -87,18 +87,23 @@ export default function Questionnaires() {
       )}
 
       <div>
-        <Button
-          size="lg"
-          onClick={() =>
-            stepIndex + 1 < total
-              ? router.push(`/questionnaire/${id}/${Number(step) + 1}`)
-              : router.push("/results")
-          }
-          disabled={!currentSavedAnswer.rating || !currentSavedAnswer.followUp}
-        >
-          {stepIndex + 1 === total ? "Finish" : "Next Question"}
-          <ArrowRight />
-        </Button>
+        {stepIndex + 1 < total ? (
+          <Button
+            onClick={() =>
+              router.push(`/questionnaire/${id}/${Number(step) + 1}`)
+            }
+            disabled={
+              !currentSavedAnswer.rating || !currentSavedAnswer.followUp
+            }
+          >
+            Next Question
+            <ArrowRight />
+          </Button>
+        ) : (
+          <Button onClick={() => router.push("/results")}>
+            Finish and Save
+          </Button>
+        )}
       </div>
     </main>
   );
