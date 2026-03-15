@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+import Link from "next/link";
 import Logo from "@/assets/icons/logo-black.svg";
 import Styles from "./header.module.css";
 
@@ -8,7 +9,8 @@ const Header = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
     <div className={combinedClasses} {...props}>
       <span className={Styles.yellowbar}></span>
       <div className={Styles.logo}>
-        {<Logo />} <span className="sr-only">Logo: Dimando questionnaire</span>
+        <Link href={"/"}>{<Logo />}</Link>
+        <span className="sr-only">Logo: Dimando questionnaire</span>
       </div>
     </div>
   );

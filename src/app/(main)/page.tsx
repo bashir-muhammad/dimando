@@ -1,5 +1,5 @@
 "use client";
-import styles from "@/styles/page.module.css";
+import styles from "./page.module.css";
 import { useApp } from "@/context/app-context";
 import Link from "next/link";
 import {

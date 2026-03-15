@@ -5,8 +5,6 @@ import { AppConfig } from "@/types/config";
 import { sansation, ibmPlexSerif } from "@/styles/fonts";
 import "@/styles/tokens.css";
 import "@/styles/globals.css";
-import { Footer } from "@/components/footer/footer";
-import { Header } from "@/components/header/header";
 import localData from "@/data/beecepter.json";
 
 export const metadata: Metadata = {
@@ -41,13 +39,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${sansation.variable} ${ibmPlexSerif.variable}`}>
-        <div className="container">
-          <AppProvider config={config}>
-            <Header />
-            {children}
-            <Footer />
-          </AppProvider>
-        </div>
+        <AppProvider config={config}>{children}</AppProvider>
       </body>
     </html>
   );

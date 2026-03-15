@@ -68,28 +68,3 @@ h2 {
   height: 1px;
   overflow: hidden;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-
-  html {
-    color-scheme: dark;
-  }
-} */
-
-.container {
-  padding-inline: var(--space-32);
-  margin-inline: auto;
-  max-width: var(--viewport-desktop);
-
-  @media (width >= 768px) {
-    padding-inline: var(--space-44);
-  }
-
-  @media (width >= 1920px) {
-    padding-inline: var(--space-64);
-  }
-}

@@ -1,0 +1,28 @@
+.layout {
+  min-height: 100dvh;
+  width: 100%;
+  background-image: url("/images/a_d.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-inline: var(--space-32);
+  margin-inline: auto;
+  max-width: var(--viewport-desktop);
+
+  @media (width >= 768px) {
+    padding-inline: var(--space-44);
+  }
+
+  @media (width >= 1920px) {
+    padding-inline: var(--space-64);
+  }
+
+  @media (width >= 768px) {
+    padding-inline: var(--space-44);
+  }
+
+  @media (width >= 1920px) {
+    padding-inline: var(--space-64);
+  }
+}
