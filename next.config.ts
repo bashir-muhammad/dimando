@@ -11,6 +11,20 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            exportType: "default",
+          },
+        },
+      ],
+    });
+    return config;
+  },
 };
 
 export default nextConfig;
