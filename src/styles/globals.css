@@ -26,6 +26,13 @@ a {
   text-decoration: none;
 }
 
+a,
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 p {
   margin-bottom: var(--text-md-margin);
 }

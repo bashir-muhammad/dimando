@@ -2,6 +2,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useApp } from "@/context/app-context";
 import { Button } from "@/components/button/button";
+import { RatingGroup } from "@/components/rating-group/rating-group";
 import ArrowRight from "@/assets/icons/arrow-right.svg";
 import ArrowLeft from "@/assets/icons/arrow-left.svg";
 
@@ -62,7 +63,11 @@ export default function Questionnaires() {
       </p>
       <h2>{currentQuestion.question}</h2>
       <p>{state.config?.questionnaire.description}</p>
-      {/* <RatingGroup></RatingGroup> */}
+      <RatingGroup
+        value={currentSavedAnswer.rating}
+        max={10}
+        onChange={updateRating}
+      ></RatingGroup>
 
       {/* <RadioOptions></RadioOptions> */}
 
