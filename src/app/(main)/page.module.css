@@ -43,6 +43,7 @@
 .card {
   position: relative;
   z-index: 2;
+  min-height: 320px;
 }
 
 .link {

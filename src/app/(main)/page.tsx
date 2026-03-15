@@ -9,9 +9,11 @@ import {
   CardFooter,
 } from "@/components/card/card";
 import DoubleArrowRight from "@/assets/icons/double-arrow-right.svg";
+import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
 export default function Home() {
   const { state } = useApp();
+
   return (
     <main className={styles.main}>
       <h1
@@ -44,6 +46,19 @@ export default function Home() {
             </Link>
           </Card>
         ))}
+        {state.responses && (
+          <Card variant="result" className={styles.card}>
+            <CardTitle>See results</CardTitle>
+            <CardFooter icon={<ListAltCheck width={24} height={24} />}>
+              <span>
+                {Object.keys(state.responses).length} Questionnaires completed
+              </span>
+            </CardFooter>
+            <Link className={styles.link} href={`/results`}>
+              <span className="sr-only">Open result page</span>
+            </Link>
+          </Card>
+        )}
       </div>
     </main>
   );
