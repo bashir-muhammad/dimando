@@ -9,6 +9,7 @@ type Action =
       type: "SET_ANSWER";
       payload: { qId: string; index: number; answer: UserAnswer };
     }
+  | { type: "DELETE_QUESTIONNAIRE"; payload: { qId: string } }
   | { type: "RESET_ALL" };
 
 const AppContext = createContext<{
@@ -31,6 +32,16 @@ function appReducer(state: GlobalState, action: Action): GlobalState {
     case "RESET_ALL":
       localStorage.removeItem("user_responses");
       return { ...state, responses: {}, isHydrated: true };
+
+    case "DELETE_QUESTIONNAIRE": {
+      const { qId } = action.payload;
+      const newResponses = { ...state.responses };
+
+      delete newResponses[qId];
+
+      localStorage.setItem("user_responses", JSON.stringify(newResponses));
+      return { ...state, responses: newResponses };
+    }
     default:
       return state;
   }

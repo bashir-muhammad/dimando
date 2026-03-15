@@ -4,8 +4,11 @@ import { useApp } from "@/context/app-context";
 import { Button } from "@/components/button/button";
 
 export default function Results() {
-  const { state } = useApp();
+  const { state, dispatch } = useApp();
   const completedQuestions = Object.keys(state.responses).length;
+  const handleDelete = (qId: string) => {
+    dispatch({ type: "DELETE_QUESTIONNAIRE", payload: { qId } });
+  };
 
   return (
     <div>
@@ -47,7 +50,9 @@ export default function Results() {
                 <h2>{questionData?.title}</h2>
                 <p>Score: {averageRating}</p>
               </span>
-              <Button size="sm">Clear data</Button>
+              <Button size="sm" onClick={() => handleDelete(qId)}>
+                Clear data
+              </Button>
             </div>
 
             {Object.values(answers).map((answer, index) => (
