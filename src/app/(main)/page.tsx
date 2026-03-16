@@ -8,6 +8,7 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/card/card";
+import { Button } from "@/components/button/button";
 import DoubleArrowRight from "@/assets/icons/double-arrow-right.svg";
 import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
@@ -45,38 +46,43 @@ export default function Home() {
             >
               <CardTitle>{quesionnare.title}</CardTitle>
               <CardDescription>{quesionnare.description}</CardDescription>
-              <CardFooter icon={<DoubleArrowRight width={24} height={24} />}>
+              <CardFooter>
                 <span>
                   {quesionnare.questions.length} Question
                   {quesionnare.questions.length > 1 && "s"}
                   {completed && " completed"}
                 </span>
+                <Button
+                  className={styles.link}
+                  variant="icon"
+                  as="link"
+                  href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
+                  aria-label={`Open: ${quesionnare.title}`}
+                  disabled={completed}
+                  aria-disabled={completed}
+                >
+                  <DoubleArrowRight />
+                </Button>
               </CardFooter>
-              {!completed && (
-                <span>
-                  <Link
-                    className={styles.link}
-                    href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
-                  >
-                    <span className="sr-only">Open: {quesionnare.title}</span>
-                  </Link>
-                  ,
-                </span>
-              )}
             </Card>
           );
         })}
         {state.responses && (
           <Card variant="result" className={styles.card}>
             <CardTitle>See results</CardTitle>
-            <CardFooter icon={<ListAltCheck width={24} height={24} />}>
+            <CardFooter>
               <span>
                 {Object.keys(state.responses).length} Questionnaires completed
               </span>
+              <Button
+                className={styles.link}
+                variant="icon"
+                as="link"
+                href="/results"
+              >
+                <ListAltCheck />
+              </Button>
             </CardFooter>
-            <Link className={styles.link} href={`/results`}>
-              <span className="sr-only">Open result page</span>
-            </Link>
           </Card>
         )}
       </div>
