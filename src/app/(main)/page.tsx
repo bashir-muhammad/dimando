@@ -31,29 +31,41 @@ export default function Home() {
       <p>{state.config?.homepage.description}</p>
 
       <div className={styles.cards}>
-        {state.config?.questionnaires.map((quesionnare) => (
-          <Card
-            key={quesionnare.id}
-            variant="default"
-            className={styles.card}
-            style={{ backgroundColor: quesionnare.color }}
-          >
-            <CardTitle>{quesionnare.title}</CardTitle>
-            <CardDescription>{quesionnare.description}</CardDescription>
-            <CardFooter icon={<DoubleArrowRight width={24} height={24} />}>
-              <span>
-                {quesionnare.questions.length} Question
-                {quesionnare.questions.length > 1 && "s"}
-              </span>
-            </CardFooter>
-            <Link
-              className={styles.link}
-              href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
+        {state.config?.questionnaires.map((quesionnare) => {
+          const completed =
+            getLastStep(quesionnare.id) >= quesionnare.questions.length;
+          const variant = completed ? "completed" : "default";
+
+          return (
+            <Card
+              key={quesionnare.id}
+              variant={variant}
+              className={styles.card}
+              style={{ backgroundColor: quesionnare.color }}
             >
-              <span className="sr-only">Open: {quesionnare.title}</span>
-            </Link>
-          </Card>
-        ))}
+              <CardTitle>{quesionnare.title}</CardTitle>
+              <CardDescription>{quesionnare.description}</CardDescription>
+              <CardFooter icon={<DoubleArrowRight width={24} height={24} />}>
+                <span>
+                  {quesionnare.questions.length} Question
+                  {quesionnare.questions.length > 1 && "s"}
+                  {completed && " completed"}
+                </span>
+              </CardFooter>
+              {!completed && (
+                <span>
+                  <Link
+                    className={styles.link}
+                    href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
+                  >
+                    <span className="sr-only">Open: {quesionnare.title}</span>
+                  </Link>
+                  ,
+                </span>
+              )}
+            </Card>
+          );
+        })}
         {state.responses && (
           <Card variant="result" className={styles.card}>
             <CardTitle>See results</CardTitle>
