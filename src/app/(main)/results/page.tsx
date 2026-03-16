@@ -61,7 +61,9 @@ export default function Results() {
                   <h2 className={Styles.categoryTitle}>
                     {questionData?.title}
                   </h2>
-                  <p className={Styles.categoryScore}>Score: {averageRating}</p>
+                  <p className={Styles.categoryScore}>
+                    Score: {averageRating.toFixed(2)}
+                  </p>
                 </div>
                 <div>
                   <Button size="sm" onClick={() => handleDelete(qId)}>
@@ -75,9 +77,15 @@ export default function Results() {
                     <p>Question {index + 1}</p>
                     <h3>{questionData?.questions[index].question}</h3>
                     <div className={Styles.result}>
-                      <span>{answer.rating}</span>
-                      <p>
-                        Follow up option <span>{answer.followUp}</span>
+                      <span className={Styles.resultRating}>
+                        <span className="sr-only">Result rating: </span>
+                        {answer.rating}
+                      </span>
+                      <p className={Styles.resultText}>
+                        <span className={Styles.resultTextOption}>
+                          Follow up option
+                        </span>
+                        <span>{answer.followUp}</span>
                       </p>
                     </div>
                   </div>
