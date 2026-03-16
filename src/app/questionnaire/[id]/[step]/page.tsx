@@ -99,6 +99,7 @@ export default function Questionnaires() {
 
         {stepIndex + 1 < total ? (
           <Button
+            className={Styles.nextButton}
             onClick={() =>
               router.push(`/questionnaire/${id}/${Number(step) + 1}`)
             }

@@ -19,6 +19,13 @@
   margin-bottom: var(--space-4xl);
 }
 
+.nextButton,
+.finishButton {
+  &:focus-visible {
+    outline-color: var(--color-white);
+  }
+}
+
 .finishButton {
   display: flex;
   justify-content: end;

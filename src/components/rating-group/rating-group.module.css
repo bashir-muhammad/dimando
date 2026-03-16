@@ -38,6 +38,11 @@
     background-color: var(--color-primary);
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
+  &:focus-visible {
+    outline-color: var(--color-white);
+  }
+
   &[aria-pressed="true"] {
     background-color: yellow;
   }
