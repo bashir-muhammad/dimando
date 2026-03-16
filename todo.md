@@ -4,3 +4,5 @@
   [] update the footer with dynamic data
   [] refactor Footer semantic markup
   [] position Footer to bottom left
+  [] homepage: add Card completed style/disable
+  [] Button Font family and size

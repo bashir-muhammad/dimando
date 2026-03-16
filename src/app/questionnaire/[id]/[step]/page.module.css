@@ -19,7 +19,12 @@
   margin-bottom: var(--space-4xl);
 }
 
-.ButtonGroup {
+.finishButton {
+  display: flex;
+  justify-content: end;
+}
+
+.buttonGroup {
   display: flex;
   gap: var(--space-md);
   align-self: end;

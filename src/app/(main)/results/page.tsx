@@ -2,6 +2,9 @@
 
 import { useApp } from "@/context/app-context";
 import { Button } from "@/components/button/button";
+import ArrowLeft from "@/assets/icons/arrow-left.svg";
+
+import Styles from "./page.module.css";
 
 export default function Results() {
   const { state, dispatch } = useApp();
@@ -11,8 +14,9 @@ export default function Results() {
   };
 
   return (
-    <div>
-      <Button as="a" href="/">
+    <main className={Styles.main}>
+      <Button className={Styles.backButton} as="a" size="sm" href="/">
+        <ArrowLeft />
         Home
       </Button>
       <h1>{state.config?.questionnaire.results.title}</h1>
@@ -28,46 +32,57 @@ export default function Results() {
           (q) => q.id === qId,
         );
         return (
-          <Button key={qId} as="a" href={`#${qId}`}>
-            {questionData?.title}
-          </Button>
-        );
-      })}
-
-      {Object.entries(state.responses).map(([qId, answers]) => {
-        const questionData = state.config?.questionnaires.find(
-          (q) => q.id === qId,
-        );
-
-        const ratings = Object.values(answers);
-        const averageRating =
-          ratings.reduce((sum, { rating }) => sum + rating, 0) / ratings.length;
-
-        return (
-          <div key={qId}>
-            <div id={qId}>
-              <span>
-                <h2>{questionData?.title}</h2>
-                <p>Score: {averageRating}</p>
-              </span>
-              <Button size="sm" onClick={() => handleDelete(qId)}>
-                Clear data
-              </Button>
-            </div>
-
-            {Object.values(answers).map((answer, index) => (
-              <div key={index}>
-                <p>Question {index + 1}</p>
-                <h3>{questionData?.questions[index].question}</h3>
-                <span>{answer.rating}</span>
-                <p>
-                  Follow up option <span>{answer.followUp}</span>
-                </p>
-              </div>
-            ))}
+          <div key={qId} className={Styles.categoryGroupButton}>
+            <Button as="a" href={`#${qId}`}>
+              {questionData?.title}
+            </Button>
           </div>
         );
       })}
-    </div>
+      <div className={Styles.results}>
+        {Object.entries(state.responses).map(([qId, answers]) => {
+          const questionData = state.config?.questionnaires.find(
+            (q) => q.id === qId,
+          );
+
+          const ratings = Object.values(answers);
+          const averageRating =
+            ratings.reduce((sum, { rating }) => sum + rating, 0) /
+            ratings.length;
+
+          return (
+            <div key={qId}>
+              <div id={qId} className={Styles.resultsHeader}>
+                <div>
+                  <h2 className={Styles.categoryTitle}>
+                    {questionData?.title}
+                  </h2>
+                  <p className={Styles.categoryScore}>Score: {averageRating}</p>
+                </div>
+                <div>
+                  <Button size="sm" onClick={() => handleDelete(qId)}>
+                    Clear data
+                  </Button>
+                </div>
+              </div>
+              <div className={Styles.questionResults}>
+                {Object.values(answers).map((answer, index) => (
+                  <div key={index} className={Styles.questionResult}>
+                    <p>Question {index + 1}</p>
+                    <h3>{questionData?.questions[index].question}</h3>
+                    <div className={Styles.result}>
+                      <span>{answer.rating}</span>
+                      <p>
+                        Follow up option <span>{answer.followUp}</span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </main>
   );
 }

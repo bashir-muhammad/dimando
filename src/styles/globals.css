@@ -56,8 +56,13 @@ h1 {
   font-size: var(--text-2xl);
 }
 
-h2 {
+h2,
+h3 {
   font-size: var(--text-xl);
+}
+
+h3 {
+  margin-bottom: var(--space-xl);
 }
 
 .sr-only {

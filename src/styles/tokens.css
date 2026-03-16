@@ -52,6 +52,7 @@
   --font-body: var(--font-ibm-plex), serif;
   --font-title: var(--font-sansation), sans-serif;
   --font-weight-body: 400; /* Regular */
+  --font-bold: 600;
 
   /* --- Responsive spacing defaults (mobile-first) --- */
   --space-xs: 4px;
