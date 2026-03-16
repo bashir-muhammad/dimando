@@ -59,7 +59,6 @@ export default function Home() {
                   href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
                   aria-label={`Open: ${quesionnare.title}`}
                   disabled={completed}
-                  aria-disabled={completed}
                 >
                   <DoubleArrowRight />
                 </Button>
