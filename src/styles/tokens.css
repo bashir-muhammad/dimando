@@ -49,10 +49,10 @@
   );
 
   /* --- Typography --- */
-  --font-body: var(--font-ibm-plex), serif;
-  --font-title: var(--font-sansation), sans-serif;
+  --font-body: var(--font-ibm-plex);
+  --font-title: var(--font-sansation);
   --font-weight-body: 400; /* Regular */
-  --font-bold: 600;
+  --font-bold: 700;
 
   /* --- Responsive spacing defaults (mobile-first) --- */
   --space-xs: 4px;

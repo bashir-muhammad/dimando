@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
+  font-family: var(--font-sansation);
+  font-weight: var(--font-bold);
   color: var(--color-gray-90);
   border: none;
   border-radius: var(--space-sm);
@@ -36,11 +38,14 @@
 
 .md {
   padding: var(--space-md, 20px) var(--space-xl, 28px);
+  font-size: var(--text-md);
+  gap: var(--space-md);
 }
 
 .lg {
   font-size: var(--text-lg);
   padding: var(--space-lg, 24px) var(--space-2xl, 32px);
+  gap: var(--space-lg);
 }
 
 .disabled {
