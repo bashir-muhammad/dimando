@@ -1,8 +1,9 @@
 import { ButtonHTMLAttributes, AnchorHTMLAttributes, ElementType } from "react";
+import Link from "next/link";
 import styles from "./button.module.css";
 
 interface ButtonBaseProps {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "icon";
   size?: "sm" | "md" | "lg";
   as?: ElementType;
   disabled?: boolean;
@@ -19,7 +20,13 @@ interface ButtonAsAnchor
   href: string;
 }
 
-type ButtonProps = ButtonAsButton | ButtonAsAnchor;
+interface ButtonAsLink
+  extends ButtonBaseProps, AnchorHTMLAttributes<HTMLAnchorElement> {
+  as: "link";
+  href: string;
+}
+
+type ButtonProps = ButtonAsButton | ButtonAsAnchor | ButtonAsLink;
 const Button = ({
   variant = "primary",
   size = "md",
@@ -31,12 +38,36 @@ const Button = ({
   const combinedClasses = [
     styles.button,
     styles[variant],
-    styles[size],
+    variant !== "icon" && styles[size],
     disabled && styles.disabled,
     className,
   ]
     .filter(Boolean)
     .join(" ");
+
+  if (Component === "link") {
+    const { href, ...rest } = props as ButtonAsLink;
+
+    if (disabled) {
+      return (
+        <span
+          className={combinedClasses}
+          aria-disabled={true}
+          role="link"
+          {...rest}
+        />
+      );
+    }
+
+    return (
+      <Link
+        href={href}
+        className={combinedClasses}
+        aria-disabled={disabled}
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      />
+    );
+  }
 
   if (Component === "a") {
     return (

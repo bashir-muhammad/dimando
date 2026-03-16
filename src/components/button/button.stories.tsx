@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Button } from "./button";
+import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -11,7 +12,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "secondary"],
+      options: ["primary", "secondary", "icon"],
     },
     size: {
       control: "select",
@@ -30,6 +31,20 @@ export const Primary: Story = {
   args: {
     variant: "primary",
     children: "Primary Action",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: "secondary",
+    children: "Secondarhy action",
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    variant: "icon",
+    children: <ListAltCheck />,
   },
 };
 

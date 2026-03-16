@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Card, CardTitle, CardDescription, CardFooter } from "./card";
+import { Button } from "@/components/button/button";
 import DoubleArrowRight from "@/assets/icons/double-arrow-right.svg";
 import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
@@ -31,8 +32,11 @@ export const Default: Story = {
         facere, quis dignissimos ratione, cumque aut exercitationem labore
         quidem inventore.
       </CardDescription>
-      <CardFooter icon={<DoubleArrowRight width={20} height={20} />}>
+      <CardFooter>
         <span># questions</span>
+        <Button variant="icon">
+          <ListAltCheck />
+        </Button>
       </CardFooter>
     </Card>
   ),
@@ -62,8 +66,11 @@ export const Result: Story = {
         facere, quis dignissimos ratione, cumque aut exercitationem labore
         quidem inventore.
       </CardDescription>
-      <CardFooter icon={<ListAltCheck />}>
+      <CardFooter>
         <span>3 questions are completed</span>
+        <Button variant="icon">
+          <ListAltCheck />
+        </Button>
       </CardFooter>
     </Card>
   ),

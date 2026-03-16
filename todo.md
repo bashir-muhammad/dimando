@@ -5,4 +5,8 @@
   [] refactor Footer semantic markup
   [] position Footer to bottom left
   [] homepage: add Card completed style/disable
-  [] Button Font family and size
+  [x] Button Font family and size
+  [] Result page: change background image according to data
+  [] Add accessibility navigation style
+  [] Fix focus style on the Cards
+  [] Check the usage of "state" in every page and decouple data if possible
