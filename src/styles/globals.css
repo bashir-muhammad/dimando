@@ -56,8 +56,13 @@ h1 {
   font-size: var(--text-2xl);
 }
 
-h2 {
+h2,
+h3 {
   font-size: var(--text-xl);
+}
+
+h3 {
+  margin-bottom: var(--space-xl);
 }
 
 .sr-only {
@@ -69,27 +74,12 @@ h2 {
   overflow: hidden;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[id] {
+  scroll-margin-top: 80px;
+}
 
+@media (prefers-reduced-motion: no-preference) {
   html {
-    color-scheme: dark;
-  }
-} */
-
-.container {
-  padding-inline: var(--space-32);
-  margin-inline: auto;
-  max-width: var(--viewport-desktop);
-
-  @media (width >= 768px) {
-    padding-inline: var(--space-44);
-  }
-
-  @media (width >= 1920px) {
-    padding-inline: var(--space-64);
+    scroll-behavior: smooth;
   }
 }

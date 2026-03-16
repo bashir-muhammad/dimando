@@ -21,7 +21,7 @@ export default function Questionnaires() {
 
   const currentSavedAnswer = state.responses[id as string]?.[stepIndex] || {
     rating: 0,
-    followUP: "",
+    followUp: "",
   };
 
   const updateRating = (rating: number) => {
@@ -46,47 +46,57 @@ export default function Questionnaires() {
     });
   };
 
+  const handleQuitWithoutSaving = () => {
+    dispatch({ type: "DELETE_QUESTIONNAIRE", payload: { qId: id as string } });
+    router.push("/");
+  };
+
+  const handleQuitAndSave = () => {
+    router.push("/");
+  };
+
   if (!currentQuestion) return null;
 
   return (
-    <main>
+    <main className={Styles.main}>
       <Button
         variant="secondary"
         size="sm"
         onClick={() => router.back()}
         disabled={stepIndex === 0}
+        className={Styles.backButton}
       >
         <ArrowLeft />
         Back
       </Button>
-      <p>
-        {state.config?.questionnaire["sup-title"]
-          ?.replace("{current}", step as string)
-          .replace("{total}", total.toString())}
-      </p>
-      <h2>{currentQuestion.question}</h2>
-      <p>{state.config?.questionnaire.description}</p>
-      <RatingGroup
-        value={currentSavedAnswer.rating}
-        max={10}
-        onChange={updateRating}
-      ></RatingGroup>
-      {currentSavedAnswer.rating > 0 && (
-        <div className={Styles.rating}>
-          {currentQuestion["follow-up-options"].map((option) => (
-            <Radio
-              key={option}
-              onChange={() => updateFollowUp(option)}
-              value={option}
-              checked={currentSavedAnswer.followUp === option}
-            >
-              {option}
-            </Radio>
-          ))}
-        </div>
-      )}
-
       <div>
+        <p>
+          {state.config?.questionnaire["sup-title"]
+            ?.replace("{current}", step as string)
+            .replace("{total}", total.toString())}
+        </p>
+        <h2>{currentQuestion.question}</h2>
+        <p>{state.config?.questionnaire.description}</p>
+        <RatingGroup
+          value={currentSavedAnswer.rating}
+          max={10}
+          onChange={updateRating}
+        ></RatingGroup>
+        {currentSavedAnswer.rating > 0 && (
+          <div className={Styles.rating}>
+            {currentQuestion["follow-up-options"].map((option) => (
+              <Radio
+                key={option}
+                onChange={() => updateFollowUp(option)}
+                value={option}
+                checked={currentSavedAnswer.followUp === option}
+              >
+                {option}
+              </Radio>
+            ))}
+          </div>
+        )}
+
         {stepIndex + 1 < total ? (
           <Button
             onClick={() =>
@@ -100,11 +110,26 @@ export default function Questionnaires() {
             <ArrowRight />
           </Button>
         ) : (
-          <Button onClick={() => router.push("/results")}>
-            Finish and Save
-          </Button>
+          <div className={Styles.finishButton}>
+            <Button
+              className={Styles.finishButton}
+              onClick={() => router.push("/results")}
+            >
+              Finish and Save
+            </Button>
+          </div>
         )}
       </div>
+      {stepIndex + 1 < total && (
+        <div className={Styles.buttonGroup}>
+          <Button variant="secondary" onClick={handleQuitWithoutSaving}>
+            Quit
+          </Button>
+          <Button variant="secondary" onClick={handleQuitAndSave}>
+            Quit and Save
+          </Button>
+        </div>
+      )}
     </main>
   );
 }
