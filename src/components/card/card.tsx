@@ -5,10 +5,6 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "completed" | "result";
 }
 
-interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
-  icon?: ReactNode;
-}
-
 const Card = ({
   variant = "default",
   className,
@@ -52,20 +48,14 @@ const CardDescription = ({
 };
 
 const CardFooter = ({
-  icon,
   className,
   children,
   ...props
-}: CardFooterProps) => {
+}: HTMLAttributes<HTMLDivElement>) => {
   const combinedClasses = [Styles.footer, className].filter(Boolean).join(" ");
   return (
     <div className={combinedClasses} {...props}>
-      <span>{children}</span>
-      {icon && (
-        <span className={Styles.footericon} aria-hidden="true">
-          {icon}
-        </span>
-      )}
+      {children}
     </div>
   );
 };
