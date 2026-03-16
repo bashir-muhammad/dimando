@@ -21,7 +21,7 @@ export default function Questionnaires() {
 
   const currentSavedAnswer = state.responses[id as string]?.[stepIndex] || {
     rating: 0,
-    followUP: "",
+    followUp: "",
   };
 
   const updateRating = (rating: number) => {
@@ -44,6 +44,15 @@ export default function Questionnaires() {
         answer: { ...currentSavedAnswer, followUp: val },
       },
     });
+  };
+
+  const handleQuitWithoutSaving = () => {
+    dispatch({ type: "DELETE_QUESTIONNAIRE", payload: { qId: id as string } });
+    router.push("/");
+  };
+
+  const handleQuitAndSave = () => {
+    router.push("/");
   };
 
   if (!currentQuestion) return null;
@@ -109,8 +118,12 @@ export default function Questionnaires() {
       </div>
       {stepIndex + 1 < total && (
         <div className={Styles.ButtonGroup}>
-          <Button variant="secondary">Quit</Button>
-          <Button variant="secondary">Quit and Save</Button>
+          <Button variant="secondary" onClick={handleQuitWithoutSaving}>
+            Quit
+          </Button>
+          <Button variant="secondary" onClick={handleQuitAndSave}>
+            Quit and Save
+          </Button>
         </div>
       )}
     </main>

@@ -14,6 +14,14 @@ import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 export default function Home() {
   const { state } = useApp();
 
+  const getLastStep = (qId: string) => {
+    const savedAnswers = state.responses[qId];
+    if (!savedAnswers) return 1;
+    const answeredIndices = Object.keys(savedAnswers).map(Number);
+    const lastIndex = Math.max(...answeredIndices);
+    return lastIndex + 2;
+  };
+
   return (
     <main className={styles.main}>
       <h1
@@ -40,7 +48,7 @@ export default function Home() {
             </CardFooter>
             <Link
               className={styles.link}
-              href={`questionnaire/${quesionnare.id}/1`}
+              href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
             >
               <span className="sr-only">Open: {quesionnare.title}</span>
             </Link>
