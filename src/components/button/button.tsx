@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, AnchorHTMLAttributes, ElementType } from "react";
 import styles from "./button.module.css";
 
 interface ButtonBaseProps {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "icon";
   size?: "sm" | "md" | "lg";
   as?: ElementType;
   disabled?: boolean;
@@ -31,7 +31,7 @@ const Button = ({
   const combinedClasses = [
     styles.button,
     styles[variant],
-    styles[size],
+    variant !== "icon" && styles[size],
     disabled && styles.disabled,
     className,
   ]

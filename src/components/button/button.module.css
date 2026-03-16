@@ -8,13 +8,13 @@
   color: var(--color-gray-90);
   border: none;
   border-radius: var(--space-sm);
-  padding: var(--space-sm) var(--space-lg);
   cursor: pointer;
   transition: all var(--transition1);
 }
 
 .primary {
   background-color: var(--color-primary);
+  padding: var(--space-sm) var(--space-lg);
 
   &:hover {
     background-color: var(--color-primary-20);
@@ -24,6 +24,7 @@
 .secondary {
   color: var(--color-white);
   background-color: transparent;
+  padding: var(--space-sm) var(--space-lg);
   border: solid 1px var(--color-white);
 
   &:hover {
@@ -33,6 +34,23 @@
 
   &:focus-visible {
     outline-color: var(--color-white);
+  }
+}
+
+.icon {
+  border: 2px solid var(--color-gray-50);
+  background-color: transparent;
+  color: var(--color-gray-50);
+  display: grid;
+  place-items: center;
+  padding: var(--space-12);
+  border-radius: 100%;
+  transition: all var(--transition1);
+
+  &:hover {
+    background-color: var(--color-gray-60);
+    color: var(--color-white);
+    border-color: transparent;
   }
 }
 
