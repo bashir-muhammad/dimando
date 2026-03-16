@@ -27,18 +27,22 @@ export default function Results() {
         )}
       </p>
 
-      {Object.entries(state.responses).map(([qId]) => {
-        const questionData = state.config?.questionnaires.find(
-          (q) => q.id === qId,
-        );
-        return (
-          <div key={qId} className={Styles.categoryGroupButton}>
-            <Button as="a" href={`#${qId}`}>
+      <div
+        className={Styles.categoryGroupButton}
+        role="navition"
+        aria-label="Category filters"
+      >
+        {Object.entries(state.responses).map(([qId]) => {
+          const questionData = state.config?.questionnaires.find(
+            (q) => q.id === qId,
+          );
+          return (
+            <Button key={qId} as="a" href={`#${qId}`}>
               {questionData?.title}
             </Button>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
       <div className={Styles.results}>
         {Object.entries(state.responses).map(([qId, answers]) => {
           const questionData = state.config?.questionnaires.find(

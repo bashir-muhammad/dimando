@@ -73,3 +73,13 @@ h3 {
   height: 1px;
   overflow: hidden;
 }
+
+[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
