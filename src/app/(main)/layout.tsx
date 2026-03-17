@@ -9,7 +9,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
   const { state } = useApp();
   return (
     <div className={Styles.layout}>
-      <Header />
+      <Header className={Styles.header} />
       {children}
       <Footer data={state.config?.questionnaire.footer} />
     </div>
