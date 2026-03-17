@@ -8,6 +8,7 @@ import Styles from "./page.module.css";
 
 export default function Results() {
   const { state, dispatch } = useApp();
+  if (!state.isHydrated) return null;
   const completedQuestions = Object.keys(state.responses).length;
   const handleDelete = (qId: string) => {
     dispatch({ type: "DELETE_QUESTIONNAIRE", payload: { qId } });

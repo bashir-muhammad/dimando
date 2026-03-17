@@ -15,6 +15,8 @@ import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 export default function Home() {
   const { state } = useApp();
 
+  if (!state.isHydrated) return null;
+
   const getAnswerCount = (qId: string) =>
     Object.keys(state.responses[qId] ?? {}).length;
   const hasResults = Object.keys(state.responses).length > 0;
