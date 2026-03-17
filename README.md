@@ -1,6 +1,27 @@
 # Questionnaire Application
 
-A Questionnair application with reusable UI components, Storybook integration and local response persistence.
+A Questionnaire application with reusable UI components, Storybook integration and local response persistence.
+
+## Architecture and Design Decisions
+
+- App Router with two route groups: (main) for the `home` and `results` pages and `questionnaire/[id][step]` for the multistep flow.
+- Config driven UI: All content (questions, labels, colors, background images) come from a single source, fetched in the root layout and provided via React Context.
+- State Management: Used `useReducer` + `Context` for global state. This provids a lightweight solution without third-party library.
+
+## Component Library / Storybook
+
+- All shared components are documented in the Storybook
+- Accessibilty addon is included for a11y checks.
+
+## Styling
+
+- Pure CSS: Developed with standard `css` without `SCSS` or `less`, leveraging modern features.
+- CSS Modules: Implemented the CSS modules pattern to ensure scoped styling and prevent class name collisions.
+
+## Known issues
+
+- A11y: Some color contrast issues exist, primarly originating from the specific design requirement.
+- There mahy be minor visual mismatch between the development and design mockup.
 
 ## Link
 
@@ -12,18 +33,12 @@ A Questionnair application with reusable UI components, Storybook integration an
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Availabel Scripts
+## Available Scripts
 
 - `pnpm dev` - start development server
 - `pnpm build` - create production build
