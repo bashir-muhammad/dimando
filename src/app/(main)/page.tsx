@@ -1,7 +1,7 @@
 "use client";
+import { ReactNode } from "react";
 import styles from "./page.module.css";
 import { useApp } from "@/context/app-context";
-import Link from "next/link";
 import {
   Card,
   CardTitle,
@@ -15,26 +15,43 @@ import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 export default function Home() {
   const { state } = useApp();
 
-  const getLastStep = (qId: string) => {
-    const savedAnswers = state.responses[qId];
-    if (!savedAnswers) return 1;
-    const answeredIndices = Object.keys(savedAnswers).map(Number);
-    const lastIndex = Math.max(...answeredIndices);
-    return lastIndex + 2;
+  if (!state.isHydrated) return null;
+
+  const getAnswerCount = (qId: string) =>
+    Object.keys(state.responses[qId] ?? {}).length;
+  const hasResults = Object.keys(state.responses).length > 0;
+
+  const getNextStep = (qId: string, totalQuestions: number) => {
+    const savedAnswers = state.responses[qId] ?? {};
+
+    for (let index = 0; index < totalQuestions; index += 1) {
+      if (!(index in savedAnswers)) return index + 1;
+    }
+
+    return savedAnswers;
   };
+
+  function renderSafeTitle(text: string): ReactNode[] {
+    return text.split(/(<mark>.*?<\/mark>|<[^>]+>)/g).map((part, i) => {
+      const markMatch = part.match(/^<mark>(.*?)<\/mark>$/);
+      if (markMatch) return <mark key={i}>{markMatch[1]}</mark>;
+
+      if (/^<[^>]+>$/.test(part)) return null;
+
+      return part;
+    });
+  }
 
   return (
     <main className={styles.main}>
-      <h1
-        className={styles.title}
-        dangerouslySetInnerHTML={{ __html: state.config?.homepage.title ?? "" }}
-      />
+      <h1 className={styles.title}>
+        {renderSafeTitle(state.config?.homepage.title as string) ?? ""}
+      </h1>
       <p>{state.config?.homepage.description}</p>
-
       <div className={styles.cards}>
         {state.config?.questionnaires.map((quesionnare) => {
-          const completed =
-            getLastStep(quesionnare.id) >= quesionnare.questions.length;
+          const answeredQuestions = getAnswerCount(quesionnare.id);
+          const completed = answeredQuestions >= quesionnare.questions.length;
           const variant = completed ? "completed" : "default";
 
           return (
@@ -51,22 +68,26 @@ export default function Home() {
                   {quesionnare.questions.length} Question
                   {quesionnare.questions.length > 1 && "s"}
                   {completed && " completed"}
+                  {!completed &&
+                    answeredQuestions > 0 &&
+                    `, ${answeredQuestions} answered`}
                 </span>
-                <Button
-                  className={styles.link}
-                  variant="icon"
-                  as="link"
-                  href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
-                  aria-label={`Open: ${quesionnare.title}`}
-                  disabled={completed}
-                >
-                  <DoubleArrowRight />
-                </Button>
+                {!completed && (
+                  <Button
+                    className={styles.link}
+                    variant="icon"
+                    as="link"
+                    href={`questionnaire/${quesionnare.id}/${getNextStep(quesionnare.id, quesionnare.questions.length)}`}
+                    aria-label={`Open: ${quesionnare.title}`}
+                  >
+                    <DoubleArrowRight />
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           );
         })}
-        {state.responses && (
+        {hasResults && (
           <Card variant="result" className={styles.card}>
             <CardTitle>See results</CardTitle>
             <CardFooter>
