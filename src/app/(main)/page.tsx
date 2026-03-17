@@ -1,4 +1,5 @@
 "use client";
+import { ReactNode } from "react";
 import styles from "./page.module.css";
 import { useApp } from "@/context/app-context";
 import {
@@ -13,7 +14,6 @@ import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
 export default function Home() {
   const { state } = useApp();
-
   const getLastStep = (qId: string) => {
     const savedAnswers = state.responses[qId];
     if (!savedAnswers) return 1;
@@ -22,14 +22,23 @@ export default function Home() {
     return lastIndex + 2;
   };
 
+  function renderSafeTitle(text: string): ReactNode[] {
+    return text.split(/(<mark>.*?<\/mark>|<[^>]+>)/g).map((part, i) => {
+      const markMatch = part.match(/^<mark>(.*?)<\/mark>$/);
+      if (markMatch) return <mark key={i}>{markMatch[1]}</mark>;
+
+      if (/^<[^>]+>$/.test(part)) return null;
+
+      return part;
+    });
+  }
+
   return (
     <main className={styles.main}>
-      <h1
-        className={styles.title}
-        dangerouslySetInnerHTML={{ __html: state.config?.homepage.title ?? "" }}
-      />
+      <h1 className={styles.title}>
+        {renderSafeTitle(state.config?.homepage.title as string) ?? ""}
+      </h1>
       <p>{state.config?.homepage.description}</p>
-
       <div className={styles.cards}>
         {state.config?.questionnaires.map((quesionnare) => {
           const completed =
