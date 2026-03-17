@@ -116,6 +116,9 @@ export default function Questionnaires() {
             <Button
               className={Styles.finishButton}
               onClick={() => router.push("/results")}
+              disabled={
+                !currentSavedAnswer.rating || !currentSavedAnswer.followUp
+              }
             >
               Finish and Save
             </Button>
