@@ -1,7 +1,6 @@
 "use client";
 import styles from "./page.module.css";
 import { useApp } from "@/context/app-context";
-import Link from "next/link";
 import {
   Card,
   CardTitle,
@@ -52,16 +51,18 @@ export default function Home() {
                   {quesionnare.questions.length > 1 && "s"}
                   {completed && " completed"}
                 </span>
-                <Button
-                  className={styles.link}
-                  variant="icon"
-                  as="link"
-                  href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
-                  aria-label={`Open: ${quesionnare.title}`}
-                  disabled={completed}
-                >
-                  <DoubleArrowRight />
-                </Button>
+                {!completed && (
+                  <Button
+                    className={styles.link}
+                    variant="icon"
+                    as="link"
+                    href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
+                    aria-label={`Open: ${quesionnare.title}`}
+                    disabled={completed}
+                  >
+                    <DoubleArrowRight />
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           );

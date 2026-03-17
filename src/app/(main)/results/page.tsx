@@ -29,7 +29,7 @@ export default function Results() {
 
       <div
         className={Styles.categoryGroupButton}
-        role="navition"
+        role="navigation"
         aria-label="Category filters"
       >
         {Object.entries(state.responses).map(([qId]) => {
