@@ -13,7 +13,7 @@ const RatingGroup = ({ className, value, max, onChange }: RatingGroupProps) => {
     .join(" ");
   const ratings = Array.from({ length: max }, (_, i) => i + 1);
   return (
-    <ul className={combinedClasses}>
+    <ul className={combinedClasses} role="radiogroup">
       {ratings.map((num) => (
         <li key={num}>
           <button
