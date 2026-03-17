@@ -87,6 +87,7 @@ export default function Questionnaires() {
             {currentQuestion["follow-up-options"].map((option) => (
               <Radio
                 key={option}
+                id={option}
                 onChange={() => updateFollowUp(option)}
                 value={option}
                 checked={currentSavedAnswer.followUp === option}

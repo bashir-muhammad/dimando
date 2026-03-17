@@ -14,12 +14,19 @@ import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
 export default function Home() {
   const { state } = useApp();
-  const getLastStep = (qId: string) => {
-    const savedAnswers = state.responses[qId];
-    if (!savedAnswers) return 1;
-    const answeredIndices = Object.keys(savedAnswers).map(Number);
-    const lastIndex = Math.max(...answeredIndices);
-    return lastIndex + 2;
+
+  const getAnswerCount = (qId: string) =>
+    Object.keys(state.responses[qId] ?? {}).length;
+  const hasResults = Object.keys(state.responses).length > 0;
+
+  const getNextStep = (qId: string, totalQuestions: number) => {
+    const savedAnswers = state.responses[qId] ?? {};
+
+    for (let index = 0; index < totalQuestions; index += 1) {
+      if (!(index in savedAnswers)) return index + 1;
+    }
+
+    return savedAnswers;
   };
 
   function renderSafeTitle(text: string): ReactNode[] {
@@ -41,8 +48,8 @@ export default function Home() {
       <p>{state.config?.homepage.description}</p>
       <div className={styles.cards}>
         {state.config?.questionnaires.map((quesionnare) => {
-          const completed =
-            getLastStep(quesionnare.id) >= quesionnare.questions.length;
+          const answeredQuestions = getAnswerCount(quesionnare.id);
+          const completed = answeredQuestions >= quesionnare.questions.length;
           const variant = completed ? "completed" : "default";
 
           return (
@@ -59,15 +66,17 @@ export default function Home() {
                   {quesionnare.questions.length} Question
                   {quesionnare.questions.length > 1 && "s"}
                   {completed && " completed"}
+                  {!completed &&
+                    answeredQuestions > 0 &&
+                    `, ${answeredQuestions} answered`}
                 </span>
                 {!completed && (
                   <Button
                     className={styles.link}
                     variant="icon"
                     as="link"
-                    href={`questionnaire/${quesionnare.id}/${getLastStep(quesionnare.id)}`}
+                    href={`questionnaire/${quesionnare.id}/${getNextStep(quesionnare.id, quesionnare.questions.length)}`}
                     aria-label={`Open: ${quesionnare.title}`}
-                    disabled={completed}
                   >
                     <DoubleArrowRight />
                   </Button>
@@ -76,7 +85,7 @@ export default function Home() {
             </Card>
           );
         })}
-        {state.responses && (
+        {hasResults && (
           <Card variant="result" className={styles.card}>
             <CardTitle>See results</CardTitle>
             <CardFooter>
