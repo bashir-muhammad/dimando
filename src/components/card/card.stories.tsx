@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Card, CardTitle, CardDescription, CardFooter } from "./card";
 import { Button } from "@/components/button/button";
-import DoubleArrowRight from "@/assets/icons/double-arrow-right.svg";
 import ListAltCheck from "@/assets/icons/list-alt-check.svg";
 
 const meta: Meta<typeof Card> = {

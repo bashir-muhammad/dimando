@@ -8,6 +8,9 @@
   padding-block: var(--space-16);
   margin-top: auto;
   max-width: 70%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 
   @media (width >= 768px) {
     padding-inline: var(--space-44);
@@ -16,4 +19,9 @@
   @media (width >= 1920px) {
     max-width: 50%;
   }
+}
+
+.links {
+  display: flex;
+  gap: var(--space-8);
 }

@@ -1,4 +1,5 @@
 .layout {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -14,4 +15,8 @@
   @media (width >= 1920px) {
     padding-inline: var(--space-64);
   }
+}
+
+.header {
+  color: var(--color-black);
 }

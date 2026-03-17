@@ -30,7 +30,7 @@ export default function QuestionnaireLayout({
       <div className={Styles.container}>
         <Header className={Styles.header} />
         {children}
-        <Footer />
+        <Footer data={state.config?.questionnaire.footer} />
       </div>
     </div>
   );
