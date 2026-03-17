@@ -1,12 +1,12 @@
 .main {
-  padding-bottom: var(--space-32);
+  margin-bottom: calc(var(--space-32) + var(--space-56));
 
   @media (width >= 768px) {
-    padding-bottom: var(--space-44);
+    margin-bottom: calc(var(--space-44) + var(--space-56));
   }
 
   @media (width >= 1920px) {
-    padding-bottom: var(--space-64);
+    margin-bottom: calc(var(--space-64) + var(--space-56));
   }
 }
 
