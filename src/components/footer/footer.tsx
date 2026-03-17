@@ -1,5 +1,4 @@
 import { HTMLAttributes } from "react";
-
 import Styles from "./footer.module.css";
 
 interface FooterProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,7 +20,7 @@ const Footer = ({ className, data, ...props }: FooterProps) => {
       </span>
       <div className={Styles.links}>
         {data?.links?.map((link) => (
-          <a key={link.url} href={link.url}>
+          <a key={link.name} href={link.url}>
             {link.name}
           </a>
         ))}
